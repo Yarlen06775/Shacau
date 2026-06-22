@@ -7,9 +7,7 @@
 
 <title>Shacau Analytics AI V7 Premium Elite</title>
 
-<link <link rel="stylesheet" href="style.css">
-...
-<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +17,6 @@
 <body>
 
 <!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <div class="logo">
@@ -28,55 +25,29 @@
 
 <ul>
 
-<li onclick="abrirAba('dashboard')">
-📊 Dashboard
-</li>
-
-<li onclick="abrirAba('futebol')">
-⚽ Futebol PRO
-</li>
-
-<li onclick="abrirAba('nba')">
-🏀 NBA PRO
-</li>
-
-<li onclick="abrirAba('prints')">
-📸 Analisar Print
-</li>
-
-<li onclick="abrirAba('bilhetes')">
-🎟 Bilhetes IA
-</li>
-
-<li onclick="abrirAba('banca')">
-💰 Gestão de Banca
-</li>
-
-<li onclick="abrirAba('config')">
-⚙ Configurações
-</li>
+<li onclick="abrirAba('dashboard')">📊 Dashboard</li>
+<li onclick="abrirAba('futebol')">⚽ Futebol PRO</li>
+<li onclick="abrirAba('nba')">🏀 NBA PRO</li>
+<li onclick="abrirAba('prints')">📸 Analisar Print</li>
+<li onclick="abrirAba('bilhetes')">🎟 Bilhetes IA</li>
+<li onclick="abrirAba('banca')">💰 Gestão de Banca</li>
+<li onclick="abrirAba('config')">⚙ Configurações</li>
 
 </ul>
 
 </div>
 
 <!-- CONTEÚDO -->
-
 <div class="content">
 
 <!-- DASHBOARD -->
-
 <section id="dashboard" class="aba">
 
 <div class="hero">
 
-<h1>
-👑 SHACAU ANALYTICS AI
-</h1>
+<h1>👑 SHACAU ANALYTICS AI</h1>
 
-<p>
-Análises esportivas com Inteligência Artificial
-</p>
+<p>Análises esportivas com Inteligência Artificial</p>
 
 </div>
 
@@ -107,144 +78,90 @@ Análises esportivas com Inteligência Artificial
 </section>
 
 <!-- FUTEBOL -->
-
 <section id="futebol" class="aba hidden">
 
 <h2>⚽ Futebol PRO</h2>
 
-<input
-type="text"
-id="jogo"
-placeholder="Ex: Flamengo x Palmeiras">
+<input type="text" id="jogo" placeholder="Ex: Flamengo x Palmeiras">
 
-<button onclick="analisarFutebol()">
-Analisar Partida
-</button>
+<button onclick="analisarFutebol()">Analisar Partida</button>
 
 <div id="resultadoFutebol"></div>
 
 </section>
 
 <!-- NBA -->
-
 <section id="nba" class="aba hidden">
 
 <h2>🏀 NBA PRO</h2>
 
-<input
-type="text"
-id="jogoNBA"
-placeholder="Ex: Lakers x Celtics">
+<input type="text" id="jogoNBA" placeholder="Ex: Lakers x Celtics">
 
-<button onclick="analisarNBA()">
-Analisar NBA
-</button>
+<button onclick="analisarNBA()">Analisar NBA</button>
 
 <div id="resultadoNBA"></div>
 
 </section>
 
 <!-- PRINT -->
-
 <section id="prints" class="aba hidden">
 
 <h2>📸 Analisar Print</h2>
 
-<input
-type="file"
-id="imagem">
+<input type="file" id="imagem">
 
-<img
-id="preview"
-class="preview">
+<img id="preview" class="preview">
 
-<button onclick="analisarPrint()">
-Analisar Imagem
-</button>
+<button onclick="analisarPrint()">Analisar Imagem</button>
 
 <div id="resultadoPrint"></div>
 
 </section>
 
 <!-- BILHETES -->
-
 <section id="bilhetes" class="aba hidden">
 
 <h2>🎟 Bilhetes Inteligentes</h2>
 
-<button onclick="bilheteSeguro()">
-🛡 Seguro
-</button>
-
-<button onclick="bilheteModerado()">
-⚡ Moderado
-</button>
-
-<button onclick="bilheteAgressivo()">
-🔥 Agressivo
-</button>
-
-<button onclick="bilhetePremium()">
-👑 Premium
-</button>
-
-<button onclick="bilheteElite()">
-💎 Elite
-</button>
+<button onclick="bilheteSeguro()">🛡 Seguro</button>
+<button onclick="bilheteModerado()">⚡ Moderado</button>
+<button onclick="bilheteAgressivo()">🔥 Agressivo</button>
+<button onclick="bilhetePremium()">👑 Premium</button>
+<button onclick="bilheteElite()">💎 Elite</button>
 
 <div id="resultadoBilhete"></div>
 
 </section>
 
 <!-- BANCA -->
-
 <section id="banca" class="aba hidden">
 
 <h2>💰 Gestão de Banca</h2>
 
-<input
-type="number"
-id="bancaValor"
-placeholder="Digite sua banca">
+<input type="number" id="bancaValor" placeholder="Digite sua banca">
 
-<button onclick="calcularStake()">
-Calcular
-</button>
+<button onclick="calcularStake()">Calcular</button>
 
 <div id="resultadoBanca"></div>
 
 </section>
 
 <!-- CONFIG -->
-
 <section id="config" class="aba hidden">
 
 <h2>⚙ Configurações</h2>
 
-<input
-type="password"
-id="apiKey"
-placeholder="Cole sua API OpenRouter">
+<input type="password" id="apiKey" placeholder="Cole sua API OpenRouter">
 
 <select id="modelo">
 
-<option value="deepseek/deepseek-r1:free">
-DeepSeek R1
-</option>
-
-<option value="openai/gpt-4o-mini">
-GPT-4o Mini
-</option>
-
-<option value="google/gemini-flash-1.5">
-Gemini Flash
-</option>
+<option value="deepseek/deepseek-r1:free">DeepSeek R1</option>
+<option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+<option value="google/gemini-flash-1.5">Gemini Flash</option>
 
 </select>
 
-<button onclick="salvarConfig()">
-Salvar Configurações
-</button>
+<button onclick="salvarConfig()">Salvar Configurações</button>
 
 </section>
 
@@ -253,4 +170,4 @@ Salvar Configurações
 <script src="script.js"></script>
 
 </body>
-</html>
+  </html>
