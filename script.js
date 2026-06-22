@@ -27,8 +27,8 @@ CONFIGURAÇÕES
 function salvarConfig(){
 
 const apiKey =
-document.getElementById(
-"apiKey"
+localStorage.getItem("openrouter_api") ||
+"SUA_CHAVE_AQUI";
 ).value;
 
 const modelo =
