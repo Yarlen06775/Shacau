@@ -1,1 +1,485 @@
+/* =========================
+   SHACAU AI V7 PREMIUM ELITE
+========================= */
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--gold:#FFD700;
+--gold-light:#FFE55C;
+
+--bg:#050505;
+--bg2:#111111;
+
+--card:#171717;
+
+--white:#FFFFFF;
+--gray:#BDBDBD;
+
+--green:#22C55E;
+--red:#EF4444;
+
+}
+
+body{
+
+background:
+linear-gradient(
+180deg,
+#050505,
+#0a0a0a
+);
+
+color:white;
+
+display:flex;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+
+width:260px;
+
+background:#111111;
+
+border-right:2px solid var(--gold);
+
+padding:25px;
+
+position:fixed;
+
+left:0;
+top:0;
+bottom:0;
+
+overflow-y:auto;
+
+box-shadow:
+0 0 30px rgba(255,215,0,.15);
+
+}
+
+.logo{
+
+font-size:26px;
+
+font-weight:700;
+
+color:var(--gold);
+
+text-align:center;
+
+margin-bottom:35px;
+
+text-shadow:
+0 0 10px rgba(255,215,0,.5);
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+}
+
+.sidebar li{
+
+padding:15px;
+
+margin-bottom:12px;
+
+border-radius:14px;
+
+background:#1b1b1b;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:15px;
+
+font-weight:500;
+
+}
+
+.sidebar li:hover{
+
+background:var(--gold);
+
+color:black;
+
+transform:translateX(5px);
+
+}
+
+/* =========================
+CONTENT
+========================= */
+
+.content{
+
+margin-left:260px;
+
+width:100%;
+
+padding:30px;
+
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+
+background:
+linear-gradient(
+135deg,
+#111111,
+#1a1a1a
+);
+
+padding:35px;
+
+border-radius:25px;
+
+border:1px solid var(--gold);
+
+box-shadow:
+0 0 30px rgba(255,215,0,.15);
+
+margin-bottom:25px;
+
+animation:fadeUp 1s ease;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+color:var(--gold);
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+color:#cccccc;
+
+font-size:16px;
+
+}
+
+/* =========================
+CARDS
+========================= */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+}
+
+.card{
+
+background:#111111;
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+border:1px solid rgba(255,215,0,.25);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 0 25px rgba(255,215,0,.25);
+
+}
+
+.card h3{
+
+color:var(--gold);
+
+margin-bottom:10px;
+
+}
+
+.card p{
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+/* =========================
+SEÇÕES
+========================= */
+
+section{
+
+animation:fadeUp .4s ease;
+
+}
+
+section h2{
+
+font-size:28px;
+
+margin-bottom:20px;
+
+color:var(--gold);
+
+}
+
+/* =========================
+INPUTS
+========================= */
+
+input,
+select{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:#111111;
+
+color:white;
+
+margin-bottom:15px;
+
+border:1px solid #333;
+
+}
+
+input:focus,
+select:focus{
+
+border-color:var(--gold);
+
+}
+
+/* =========================
+BOTÕES
+========================= */
+
+button{
+
+padding:14px 24px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--gold);
+
+color:black;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin-right:10px;
+
+margin-top:10px;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+background:var(--gold-light);
+
+}
+
+/* =========================
+RESULTADOS
+========================= */
+
+#resultadoFutebol,
+#resultadoNBA,
+#resultadoPrint,
+#resultadoBilhete,
+#resultadoBanca{
+
+margin-top:20px;
+
+background:#111111;
+
+padding:25px;
+
+border-radius:20px;
+
+border:1px solid #333;
+
+line-height:1.8;
+
+min-height:100px;
+
+}
+
+/* =========================
+UPLOAD
+========================= */
+
+.preview{
+
+width:100%;
+
+max-height:400px;
+
+object-fit:contain;
+
+margin-top:15px;
+
+margin-bottom:15px;
+
+border-radius:20px;
+
+display:none;
+
+border:1px solid var(--gold);
+
+}
+
+/* =========================
+SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--gold);
+
+border-radius:10px;
+
+}
+
+/* =========================
+ANIMAÇÕES
+========================= */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =========================
+UTILIDADES
+========================= */
+
+.hidden{
+
+display:none !important;
+
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+
+.sidebar{
+
+width:100%;
+
+height:auto;
+
+position:relative;
+
+border-right:none;
+
+border-bottom:2px solid var(--gold);
+
+}
+
+.content{
+
+margin-left:0;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:30px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+button{
+
+width:100%;
+
+margin-right:0;
+
+}
+
+}
