@@ -28,7 +28,7 @@ function salvarConfig(){
 
 const apiKey =
 localStorage.getItem("openrouter_api") ||
-"SUA_CHAVE_AQUI";
+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;
 ).value;
 
 const modelo =
