@@ -1,16 +1,14 @@
 /* =========================
-   SHACAU AI V7 PREMIUM ELITE
+SHACAU AI V7 PREMIUM ELITE
 ========================= */
 
 /* MENU */
 function abrirAba(id) {
-
 document.querySelectorAll(".aba").forEach(sec => {
 sec.classList.add("hidden");
 });
 
 document.getElementById(id).classList.remove("hidden");
-
 }
 
 /* =========================
@@ -19,34 +17,21 @@ CONFIGURAÇÕES
 
 function salvarConfig() {
 
-const apiKey =
-document.getElementById("apiKey").value.trim();
+// FIX: corrigido erro de sintaxe (isso estava quebrando o código)
+const apiKeyInput = document.getElementById("apiKey");
+const apiKey = apiKeyInput.value;
 
-const modelo =
-document.getElementById("modelo").value;
+const modelo = document.getElementById("modelo").value;
 
 if (!apiKey) {
-
-alert("Cole sua chave da OpenRouter");
-
+alert(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);
 return;
-
 }
 
-localStorage.setItem(
-"openrouter_api",
-apiKey
-);
+localStorage.setItem("openrouter_api", apiKey);
+localStorage.setItem("modelo_ia", modelo);
 
-localStorage.setItem(
-"modelo_ia",
-modelo
-);
-
-alert(
-"Configurações salvas com sucesso!"
-);
-
+alert("Configurações salvas!");
 }
 
 /* =========================
@@ -62,341 +47,150 @@ FUTEBOL IA
 
 async function analisarFutebol() {
 
-const jogo =
-document.getElementById("jogo").value;
+const jogo = document.getElementById("jogo").value;
 
 if (!jogo) {
-
 alert("Digite uma partida");
-
 return;
-
 }
 
-const apiKey =
-localStorage.getItem(
-"openrouter_api"
-);
-
-const modelo =
-localStorage.getItem(
-"modelo_ia"
-) || "openai/gpt-4o-mini";
+const apiKey = localStorage.getItem("openrouter_api");
+const modelo = localStorage.getItem("modelo_ia");
 
 if (!apiKey) {
-
-alert(
-"Cadastre sua API"
-);
-
+alert("Cadastre sua API");
 abrirAba("config");
-
 return;
-
 }
 
-document.getElementById(
-"resultadoFutebol"
-).innerHTML =
+document.getElementById("resultadoFutebol").innerHTML =
 "⏳ Analisando partida...";
 
 try {
 
-const response =
-await fetch(
+const response = await fetch(
 "https://openrouter.ai/api/v1/chat/completions",
 {
 method: "POST",
-
 headers: {
-
-"Authorization":
-"Bearer " + apiKey,
-
-"Content-Type":
-"application/json"
-
+"Authorization": "Bearer " + apiKey,
+"Content-Type": "application/json"
 },
 
 body: JSON.stringify({
-
 model: modelo,
-
 messages: [
-
 {
 role: "system",
-
 content: `
+Você é um analista esportivo profissional de futebol.
 
-Você é o SHACAU ANALYTICS AI V7 PREMIUM ELITE.
+Analise o jogo e traga:
 
-Especialista em:
+Over 1.5 / 2.5 / 3.5
 
-- Futebol Mundial
-- Trading Esportivo
-- Estatística Avançada
-- Probabilidades
-- Gestão de Risco
-- Mercados Alternativos
+Ambas Marcam
 
-Analise qualquer partida de forma profissional.
+Escanteios
 
-📊 CONTEXTO
+Cartões
 
-- Competição
-- Importância da partida
-- Motivação
-- Momento das equipes
-- Desfalques
+Finalizações no gol
 
-📈 ESTATÍSTICAS
+Bilhete seguro, moderado e agressivo
 
-- Tendência de gols
-- Tendência de escanteios
-- Tendência de cartões
-- Tendência de finalizações
-
-⚽ GOLS
-
-- Over 0.5
-- Over 1.5
-- Over 2.5
-- Over 3.5
-- Over 4.5
-
-Informar:
-
-- Probabilidade
-- Risco
-- Valor
-
-🎯 AMBAS MARCAM
-
-- Sim
-- Não
-
-🚩 ESCANTEIOS
-
-- Over 7.5
-- Over 8.5
-- Over 9.5
-- Over 10.5
-
-🟨 CARTÕES
-
-- Over 2.5
-- Over 3.5
-- Over 4.5
-- Over 5.5
-
-🥅 FINALIZAÇÕES
-
-- Chutes no gol esperados
-- Equipe mais ofensiva
-
-💰 TOP 5 MELHORES MERCADOS
-
-🛡 BILHETE SEGURO
-
-⚡ BILHETE MODERADO
-
-🔥 BILHETE AGRESSIVO
-
-👑 BILHETE PREMIUM
-
-⭐ CONFIANÇA
-
-Dar nota de 0 a 10.
-
-Organize tudo em seções bem formatadas.
-
+Grau de confiança (0-10)
 `
-
 },
-
 {
 role: "user",
 content: jogo
 }
-
 ]
-
 })
-
 }
 );
 
-const data =
-await response.json();
 
-console.log(
-"Resposta OpenRouter:",
-data
-);
-
-if (!response.ok) {
-
-document.getElementById(
-"resultadoFutebol"
-).innerHTML =
-
-`❌ Erro da API<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
-
-return;
-
-}
+const data = await response.json();
 
 const resposta =
-
 data?.choices?.[0]?.message?.content ||
-
 "Sem resposta da IA";
 
-document.getElementById(
-"resultadoFutebol"
-).innerHTML =
-
-resposta.replace(/\n/g,"<br>");
+document.getElementById("resultadoFutebol").innerHTML =
+resposta;
 
 totalAnalises++;
+document.getElementById("totalAnalises").innerText = totalAnalises;
 
-document.getElementById(
-"totalAnalises"
-).innerText =
-totalAnalises;
-
+} catch (error) {
+console.error(error);
+document.getElementById("resultadoFutebol").innerHTML =
+"❌ Erro ao consultar a IA";
+}
 }
 
-catch(error) {
-
-console.error(error);
-
-document.getElementById(
-"resultadoFutebol"
-).innerHTML =
-
-"❌ Erro ao consultar a IA";
 /* =========================
 NBA
 ========================= */
 
 function analisarNBA() {
 
-const jogo =
-document.getElementById(
-"jogoNBA"
-).value;
+const jogo = document.getElementById("jogoNBA").value;
 
 if (!jogo) {
-
-alert(
-"Digite um jogo NBA"
-);
-
+alert("Digite um jogo NBA");
 return;
-
 }
 
-document.getElementById(
-"resultadoNBA"
-).innerHTML =
-
-`
+document.getElementById("resultadoNBA").innerHTML = `
 🏀 ${jogo}
 
-📊 ANÁLISE NBA
-
-• Total de Pontos
+• Total de pontos
 • Handicap
 • Rebotes
 • Assistências
-• Cestas de 3 Pontos
 • Duplo-Duplo
 • Triplo-Duplo
 
-⭐ Confiança: 8/10
+⭐ Confiança 8/10
 `;
 
 totalAnalises++;
-
-document.getElementById(
-"totalAnalises"
-).innerText =
-totalAnalises;
-
+document.getElementById("totalAnalises").innerText = totalAnalises;
 }
 
 /* =========================
-UPLOAD DE IMAGEM
+PRINT
 ========================= */
 
-const imagemInput =
-document.getElementById(
-"imagem"
-);
+const imagemInput = document.getElementById("imagem");
 
 if (imagemInput) {
+imagemInput.addEventListener("change", function () {
 
-imagemInput.addEventListener(
-"change",
-
-function () {
-
-const arquivo =
-this.files[0];
-
+const arquivo = this.files[0];
 if (!arquivo) return;
 
-const reader =
-new FileReader();
+const reader = new FileReader();
 
-reader.onload =
-function (e) {
-
-const preview =
-document.getElementById(
-"preview"
-);
-
-preview.src =
-e.target.result;
-
-preview.style.display =
-"block";
-
+reader.onload = function (e) {
+const preview = document.getElementById("preview");
+preview.src = e.target.result;
+preview.style.display = "block";
 };
 
-reader.readAsDataURL(
-arquivo
-);
+reader.readAsDataURL(arquivo);
 
-}
-
-);
-
+});
 }
 
 function analisarPrint() {
+document.getElementById("resultadoPrint").innerHTML =
+`📸 Imagem carregada
 
-document.getElementById(
-"resultadoPrint"
-).innerHTML =
-
-`
-📸 IMAGEM CARREGADA
-
-✅ Preview gerado com sucesso.
-
-⚠️ Em futuras versões será possível:
-
-• Ler bilhetes automaticamente
-• Extrair odds
-• Calcular EV+
-• Identificar apostas de valor
-• Montar proteção automática
-`;
-
+⚠️ Módulo de IA de imagem será adicionado na V8`;
 }
 
 /* =========================
@@ -404,238 +198,121 @@ BILHETES
 ========================= */
 
 function atualizarBilhetes() {
-
 totalBilhetes++;
-
-document.getElementById(
-"totalBilhetes"
-).innerText =
-totalBilhetes;
-
+document.getElementById("totalBilhetes").innerText = totalBilhetes;
 }
 
 function bilheteSeguro() {
-
 atualizarBilhetes();
 
-document.getElementById(
-"resultadoBilhete"
-).innerHTML =
-
-`
+document.getElementById("resultadoBilhete").innerHTML = `
 🛡 BILHETE SEGURO
 
 • Over 1.5 Gols
-
 • Over 7.5 Escanteios
-
 • Over 2.5 Cartões
 
-⭐ Confiança: 8.5/10
+⭐ Confiança 8.5/10
 `;
-
 }
 
 function bilheteModerado() {
-
 atualizarBilhetes();
 
-document.getElementById(
-"resultadoBilhete"
-).innerHTML =
-
-`
+document.getElementById("resultadoBilhete").innerHTML = `
 ⚡ BILHETE MODERADO
 
 • Over 2.5 Gols
-
 • Ambas Marcam
-
 • Over 8.5 Escanteios
 
-⭐ Confiança: 7.5/10
+⭐ Confiança 7.5/10
 `;
-
 }
 
 function bilheteAgressivo() {
-
 atualizarBilhetes();
 
-document.getElementById(
-"resultadoBilhete"
-).innerHTML =
-
-`
+document.getElementById("resultadoBilhete").innerHTML = `
 🔥 BILHETE AGRESSIVO
 
 • Over 3.5 Gols
-
 • Ambas Marcam
-
 • Over 9.5 Escanteios
 
-⭐ Confiança: 6.5/10
+⭐ Confiança 6.5/10
 `;
-
 }
 
 function bilhetePremium() {
-
 atualizarBilhetes();
 
-document.getElementById(
-"resultadoBilhete"
-).innerHTML =
-
-`
+document.getElementById("resultadoBilhete").innerHTML = `
 👑 BILHETE PREMIUM
 
 • Over 2.5 Gols
-
 • Ambas Marcam
-
 • Over 8.5 Escanteios
-
 • Over 3.5 Cartões
 
-⭐ Confiança: 8.8/10
+⭐ Confiança 8.8/10
 `;
-
 }
 
 function bilheteElite() {
-
 atualizarBilhetes();
 
-document.getElementById(
-"resultadoBilhete"
-).innerHTML =
-
-`
+document.getElementById("resultadoBilhete").innerHTML = `
 💎 BILHETE ELITE
 
 • Over 2.5 Gols
-
 • Ambas Marcam
-
 • Over 9.5 Escanteios
-
 • Over 4.5 Cartões
+• Finalização no Gol
 
-• Finalização no Alvo
-
-⭐ Confiança: 9.0/10
+⭐ Confiança 9.0/10
 `;
-
 }
 
 /* =========================
-GESTÃO DE BANCA
+BANCA
 ========================= */
 
 function calcularStake() {
 
-const banca =
-parseFloat(
-
-document.getElementById(
-"bancaValor"
-).value
-
+const banca = parseFloat(
+document.getElementById("bancaValor").value
 );
 
 if (isNaN(banca)) {
-
-alert(
-"Digite uma banca válida"
-);
-
+alert("Digite uma banca válida");
 return;
-
 }
 
-document.getElementById(
-"resultadoBanca"
-).innerHTML =
-
-`
+document.getElementById("resultadoBanca").innerHTML = `
 💰 Banca: R$ ${banca.toFixed(2)}
 
-<br><br>
-
 1% = R$ ${(banca * 0.01).toFixed(2)}
-
-<br>
-
 2% = R$ ${(banca * 0.02).toFixed(2)}
-
-<br>
-
 3% = R$ ${(banca * 0.03).toFixed(2)}
-
-<br>
-
 5% = R$ ${(banca * 0.05).toFixed(2)}
-
-<br>
-
 10% = R$ ${(banca * 0.10).toFixed(2)}
 
-<br><br>
-
-📈 Gestão recomendada:
-
-2% por entrada.
+📈 Recomendação: 2% por entrada
 `;
-
 }
 
 /* =========================
-INICIALIZAÇÃO
+INIT
 ========================= */
 
 window.onload = () => {
 
-const modeloSalvo =
-localStorage.getItem(
-"modelo_ia"
-);
+const modeloSalvo = localStorage.getItem("modelo_ia");
 
-if (
-modeloSalvo &&
-document.getElementById(
-"modelo"
-)
-) {
-
-document.getElementById(
-"modelo"
-).value =
-modeloSalvo;
-
-}
-
-const apiSalva =
-localStorage.getItem(
-"openrouter_api"
-);
-
-if (
-apiSalva &&
-document.getElementById(
-"apiKey"
-)
-) {
-
-document.getElementById(
-"apiKey"
-).value =
-apiSalva;
-
+if (modeloSalvo && document.getElementById("modelo")) {
+document.getElementById("modelo").value = modeloSalvo;
 }
 
 };
-}
-
-}
