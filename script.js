@@ -24,7 +24,7 @@ const apiKey = apiKeyInput.value;
 const modelo = document.getElementById("modelo").value;
 
 if (!apiKey) {
-alert("Cole sua API OpenRouter");
+alert(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);
 return;
 }
 
